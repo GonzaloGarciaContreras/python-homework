@@ -75,7 +75,6 @@ def f_avg_change(filepath):
 
         next(my_csvreader)  
 
-        t_profit_losses = 0
         pl_prev_line = 0 
         compute = False 
         total_pl_gap = 0

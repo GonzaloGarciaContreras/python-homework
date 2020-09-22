@@ -36,9 +36,8 @@ import csv
 def f_nr_months(filepath):
     with open(filepath, "r") as csvfile:            # with statement auto. takes care of closing the file once it leaves the with block
         my_csvreader = csv.reader(csvfile)
-
+        
         next(my_csvreader)                          #remove the column headers in cvs
-
         nr_months = len(list(my_csvreader))         #not including headers 
         str_nr_months = f"Total Months: {nr_months}"
 
@@ -51,7 +50,6 @@ def f_t_profit_losses(filepath):
         my_csvreader = csv.reader(csvfile)
 
         next(my_csvreader)  
-
         t_profit_losses = 0
 
         for row in my_csvreader:
@@ -66,13 +64,12 @@ def f_t_profit_losses(filepath):
 def f_avg_change(filepath):
     with open(filepath, "r") as csvfile:           
         my_csvreader = csv.reader(csvfile)
+        next(my_csvreader)    
 
-        next(my_csvreader)                          
         nr_months = len(list(my_csvreader))         
 
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
-
         next(my_csvreader)  
 
         pl_prev_line = 0 
@@ -80,7 +77,6 @@ def f_avg_change(filepath):
         total_pl_gap = 0
         
         for row in my_csvreader:
-
             if compute == True: 
                 pl_gap_line = float(row[1]) - pl_prev_line 
                 total_pl_gap += pl_gap_line  
@@ -100,7 +96,6 @@ def f_avg_change(filepath):
 def f_greatest_increase(filepath):
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
-
         next(my_csvreader)  
 
         pl_prev_line = 0 
@@ -109,7 +104,6 @@ def f_greatest_increase(filepath):
         greatest_increase_pnl = 0
         
         for row in my_csvreader:
-
             if first_period == False: 
                 pl_gap_line = round((float(row[1]) - pl_prev_line), 2) 
                 if pl_gap_line > greatest_increase_pnl:
@@ -129,7 +123,6 @@ def f_greatest_increase(filepath):
 def f_greatest_decrease(filepath):
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
-
         next(my_csvreader)  
 
         pl_prev_line = 0 
@@ -138,7 +131,6 @@ def f_greatest_decrease(filepath):
         greatest_decrease_pnl = 0
         
         for row in my_csvreader:
-
             if first_period == False: 
                 pl_gap_line = round((float(row[1]) - pl_prev_line), 2) 
                 if pl_gap_line < greatest_decrease_pnl:

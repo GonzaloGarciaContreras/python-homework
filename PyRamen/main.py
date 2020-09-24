@@ -56,6 +56,7 @@ sales_list = []
 
 
 # functions 
+# read menu csv file into a menu list 
 def f_read_menu(filepath):
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
@@ -66,7 +67,7 @@ def f_read_menu(filepath):
         
     return menu_list
 
-
+# as it is a large file, get number of rows in sales for a sanity check  (to compare # rows and items in the list)
 def f_nr_rec_sales(filepath):
     with open(filepath, "r") as csvfile:           
         my_csvreader = csv.reader(csvfile)
@@ -76,7 +77,7 @@ def f_nr_rec_sales(filepath):
 
     return nr_rec_sales 
 
-
+# read sales into a list by using append method 
 def f_read_sales(filepath):
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
@@ -88,13 +89,11 @@ def f_read_sales(filepath):
 
     return sales_list
 
-
+# export report dic into a text file 
 def f_export_text_file (filepath, results):
     with open(filepath, "w") as file:
         for result in results:
             str_record = f"{result} {results[result]} \n"
-            #print(str_record)
-            #file.write(result + "\n")
             file.write(str_record)
 
     return 
@@ -108,11 +107,14 @@ menu_list = f_read_menu(menu_filepath)
 
 
 # Read in the sales data (in sales_data.csv) into the sales list (#append)
+# number of rows 
 nr_rec_sales = f_nr_rec_sales(sales_filepath)
+
+# sales into a list 
 sales_list = f_read_sales(sales_filepath)
 
 
-# verify nr of rows is consistent cvs = list 
+# Sanity check --> verify nr of rows is consistent cvs vs list 
 print(f"nr rows in csv {nr_rec_sales}, nr of items in list {sales_list[-1][0]}")
 if nr_rec_sales != int(sales_list[-1][0]):
     print ("error !! # of sales in csv and list are not consistant")

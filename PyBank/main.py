@@ -36,9 +36,10 @@ import csv
 def f_nr_months(filepath):
     with open(filepath, "r") as csvfile:            # with statement auto. takes care of closing the file once it leaves the with block
         my_csvreader = csv.reader(csvfile)
-        
-        next(my_csvreader)                          #remove the column headers in cvs
-        nr_months = len(list(my_csvreader))         #not including headers 
+        #remove the column headers in cvs
+        next(my_csvreader)  
+        #number of months (rows) not including headers 
+        nr_months = len(list(my_csvreader))          
         str_nr_months = f"Total Months: {nr_months}"
 
     return str_nr_months
@@ -62,12 +63,14 @@ def f_t_profit_losses(filepath):
 
 # The average of the changes in Profit/Losses over the entire period.
 def f_avg_change(filepath):
+    #number of rows in csv file 
     with open(filepath, "r") as csvfile:           
         my_csvreader = csv.reader(csvfile)
         next(my_csvreader)    
 
         nr_months = len(list(my_csvreader))         
 
+    # process data changes in Profit/Losses
     with open(filepath, "r") as csvfile:
         my_csvreader = csv.reader(csvfile)
         next(my_csvreader)  
